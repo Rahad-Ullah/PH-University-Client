@@ -1,22 +1,31 @@
-import React from "react";
-import { Layout, Menu } from "antd";
+
+import { Layout, Menu, MenuProps } from "antd";
+import { Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
-}));
-
+const items: MenuProps['items'] = [
+    {
+        key: '01',
+        label: 'User',
+    },
+    {
+        key: '02',
+        label: 'Admin',
+        children: [
+            {
+                key: '021',
+                label: 'User',
+            }
+        ]
+    },
+    {
+        key: '03',
+        label: 'Faculty',
+    },
+]
 const MainLayout = () => {
   return (
-    <Layout>
+    <Layout className="h-screen">
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
@@ -27,7 +36,9 @@ const MainLayout = () => {
           console.log(collapsed, type);
         }}
       >
-        <div className="demo-logo-vertical" />
+        <div className="text-xl font-bold text-white text-center py-4">
+            <h1>PH University</h1>
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -44,7 +55,7 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            The main content goes here
+            <Outlet/>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
