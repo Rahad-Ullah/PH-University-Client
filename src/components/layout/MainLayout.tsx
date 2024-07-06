@@ -1,28 +1,31 @@
-
 import { Layout, Menu, MenuProps } from "antd";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 
-const items: MenuProps['items'] = [
-    {
-        key: '01',
-        label: 'User',
-    },
-    {
-        key: '02',
-        label: 'Admin',
-        children: [
-            {
-                key: '021',
-                label: 'User',
-            }
-        ]
-    },
-    {
-        key: '03',
-        label: 'Faculty',
-    },
-]
+const items: MenuProps["items"] = [
+  {
+    key: "Dashboard",
+    label: <NavLink to={"/admin/dashboard"}>Dashboard</NavLink>,
+  },
+  {
+    key: "User Management",
+    label: "User Management",
+    children: [
+      {
+        key: "Create Admin",
+        label: <NavLink to={"/admin/create-admin"}>Create Admin</NavLink>,
+      },
+      {
+        key: "Create Faculty",
+        label: <NavLink to={"/admin/create-faculty"}>Create Faculty</NavLink>,
+      },
+      {
+        key: "Create Student",
+        label: <NavLink to={"/admin/create-student"}>Create Studet</NavLink>,
+      },
+    ],
+  },
+];
 const MainLayout = () => {
   return (
     <Layout className="h-screen">
@@ -37,7 +40,7 @@ const MainLayout = () => {
         }}
       >
         <div className="text-xl font-bold text-white text-center py-4">
-            <h1>PH University</h1>
+          <h1>PH University</h1>
         </div>
         <Menu
           theme="dark"
@@ -47,7 +50,7 @@ const MainLayout = () => {
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0}} />
+        <Header style={{ padding: 0 }} />
         <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{
@@ -55,7 +58,7 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            <Outlet/>
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
