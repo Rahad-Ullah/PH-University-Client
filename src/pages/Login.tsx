@@ -4,6 +4,7 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
+import { TUserInfo } from "../types";
 
 const Login = () => {
   const { register, handleSubmit } = useForm({
@@ -17,11 +18,13 @@ const Login = () => {
 
   const [login] = useLoginMutation();
 
-  const onSubmit = async (data) => {
-    const res = await login(data).unwrap();
+  const onSubmit = async (inputData: TUserInfo) => {
+    const res = await login(inputData).unwrap();
 
     // decode token
     const user = verifyToken(res.data.accessToken);
+
+    // set token to redux local state
     dispatch(setUser({ user: user, token: res.data.accessToken }));
   };
 

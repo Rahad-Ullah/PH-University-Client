@@ -1,14 +1,10 @@
+import { TUserInfo } from "../../../types";
 import { baseApi } from "../../api/baseApi";
-
-type TAuthState = {
-  user: null | object;
-  token: null | string;
-};
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (userInfo: TAuthState) => ({
+      query: (userInfo: TUserInfo) => ({
         url: "/auth/login",
         method: "POST",
         body: userInfo,
@@ -17,4 +13,4 @@ const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {useLoginMutation} = authApi
+export const { useLoginMutation } = authApi;
