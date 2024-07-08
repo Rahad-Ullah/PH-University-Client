@@ -2,10 +2,12 @@ import {
   createApi,
   fetchBaseQuery,
   BaseQueryFn,
+  FetchArgs,
+  BaseQueryApi,
+  DefinitionType,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 import { logout, setUser } from "../features/auth/authSlice";
-import type { FetchArgs, FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api/v1",
@@ -22,10 +24,10 @@ const baseQuery = fetchBaseQuery({
 });
 
 const baseQueryWithRefreshToken: BaseQueryFn<
-  string | FetchArgs,
-  unknown,
-  FetchBaseQueryError
-> = async (args, api, extraOptions) => {
+  FetchArgs,
+  BaseQueryApi,
+  DefinitionType
+> = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
 
   // check if the accessToken expired
