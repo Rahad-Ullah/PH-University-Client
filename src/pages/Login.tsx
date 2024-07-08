@@ -11,8 +11,8 @@ import { toast } from "sonner";
 const Login = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      id: "F-0001",
-      password: "rahad12345",
+      id: "A-0001",
+      password: "admin123",
     },
   });
   const navigate = useNavigate();
