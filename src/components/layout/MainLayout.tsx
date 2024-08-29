@@ -13,7 +13,7 @@ const MainLayout = () => {
   };
 
   return (
-    <Layout className="h-screen">
+    <Layout className="h-full">
       <Sidebar />
       <Layout>
         <Header>

@@ -35,7 +35,11 @@ const Sidebar = () => {
   }
 
   return (
-    <Sider breakpoint="lg" collapsedWidth="0">
+    <Sider
+      breakpoint="lg"
+      collapsedWidth="0"
+      style={{ height: "100vh", position: "sticky", top: "0", left: "0" }}
+    >
       <div className="text-xl font-bold text-white text-center py-4">
         <h1>PH University</h1>
       </div>
