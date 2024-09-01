@@ -10,7 +10,7 @@ interface DataType {
 
 const AcademicSemester = () => {
   const { data: semesterData } = useGetAllSemestersQuery(undefined);
-  const tableData = semesterData?.data.map(
+  const tableData = semesterData?.data?.map(
     ({ _id, name, startMonth, endMonth, year }) => ({
       _id,
       name,
